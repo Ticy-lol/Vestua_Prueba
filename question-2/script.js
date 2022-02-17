@@ -64,15 +64,13 @@ function UniqueEntityIds() {
   BrowserEvents.forEach((item) => {
     if (!uniqueEntityId.includes(item.entityId)) {
       uniqueEntityId.push(item.entityId);
+      let obj = {};
+      obj.id = item.entityId;
+      obj.clicks = uniqueClicks(item.entityId);
+      obj.impressions = uniqueImpressions(item.entityId);
+      obj.ctr = obj.clicks / obj.impressions;
+      jsonData.push(obj);
     }
-  });
-  uniqueEntityId.forEach((id) => {
-    var obj = {};
-    obj.id = id;
-    obj.clicks = uniqueClicks(id);
-    obj.impressions = uniqueImpressions(id);
-    obj.ctr = obj.clicks / obj.impressions;
-    jsonData.push(obj);
   });
   writeCsv(jsonData);
 }
