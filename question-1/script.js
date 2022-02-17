@@ -3,7 +3,7 @@
  * This file would be executed with the following command (N=100):
  * $ node scritp.js 100
  */
-
+var fs = require("fs");
 const args = process.argv.slice(-1);
 console.log(`Running question #1 with args ${args}`);
 
@@ -16,18 +16,24 @@ function starirsShuffle(n) {
     return starirsShuffle(n - 1) + starirsShuffle(n - 2);
   }
 }
+
+function writeTxt(output) {
+  fs.writeFileSync("ouput.txt", output.toString(), (error) => {
+    if (error) {
+      throw error;
+    }
+  });
+}
+
 console.log("Ingrese valor de N");
 var stdin = process.openStdin();
 
 stdin.addListener("data", function (N) {
   var numero = Number.parseInt(N.toString());
   if (numero <= 0) {
-    console.log(0);
+    writeTxt(0);
   } else {
-    console.log(
-      "Las diferentes formas de subir las escaleras: " +
-        starirsShuffle(numero + 1)
-    );
+    writeTxt(starirsShuffle(numero + 1));
   }
   process.exit();
 });

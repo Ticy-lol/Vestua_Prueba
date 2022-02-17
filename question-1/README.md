@@ -10,3 +10,5 @@ Rn=R(n-1)+R(n-2);
 Rn: Son las diferentes maneras de subir la escalera tiendo a n como la entrada.
 
 En el codigo que tuvo que hacer un pequeño "truco" para que el codigo funcionara de manera correcta sin tanta complejidad y fue añadiendole +1 al valor ingresado por el usuario.
+
+PD:Se agrego una funcion para crear y escribir la respuesta en el aarchivo txt.

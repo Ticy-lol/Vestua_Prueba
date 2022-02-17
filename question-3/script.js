@@ -40,7 +40,7 @@ function parenthesisChecker(str) {
   } else return false;
 }
 /*
-const isValid = parenthesisChecker("[]");
+const isValid = parenthesisChecker(args);
 console.log(`parenthesisChecker("${args}") = ${isValid}`);
 */
 console.log("Ingrese string");
