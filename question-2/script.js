@@ -58,9 +58,23 @@ function uniqueClicks(productId) {
   return BrowserClicks.length;
 }
 function UniqueEntityIds() {
-  let uniqueEntityId = [];
+  let uniqueEntityId = {};
   let jsonData = [];
 
+  let array = BrowserEvents.filter(function (item) {
+    var exists = !uniqueEntityId[item.entityId];
+    uniqueEntityId[item.entityId] = true;
+    if (exists == true) {
+      let obj = {};
+      obj.id = item.entityId;
+      obj.clicks = uniqueClicks(item.entityId);
+      obj.impressions = uniqueImpressions(item.entityId);
+      obj.ctr = obj.clicks / obj.impressions;
+      jsonData.push(obj);
+    }
+    return exists;
+  });
+  /*
   BrowserEvents.forEach((item) => {
     if (!uniqueEntityId.includes(item.entityId)) {
       uniqueEntityId.push(item.entityId);
@@ -71,7 +85,7 @@ function UniqueEntityIds() {
       obj.ctr = obj.clicks / obj.impressions;
       jsonData.push(obj);
     }
-  });
+  });*/
   writeCsv(jsonData);
 }
 
